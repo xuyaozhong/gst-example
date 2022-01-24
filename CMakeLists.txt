@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.6.3)
 
 set(gstexample "gstexample")
+set(videotestsrc_example "videotestsrc_example")
 
 find_package(PkgConfig REQUIRED)
 
@@ -32,7 +33,10 @@ else()
 endif()
 
 add_executable(${gstexample} gstexample.c)
+add_executable(${videotestsrc_example} videotestsrc_example.c)
 
 target_include_directories(${gstexample} PRIVATE ${GLIB2_INCLUDE_DIRS} ${GST_INCLUDE_DIRS} ${GST_APP_INCLUDE_DIRS} ${GOBJ2_INCLUDE_DIRS})
+target_include_directories(${videotestsrc_example} PRIVATE ${GLIB2_INCLUDE_DIRS} ${GST_INCLUDE_DIRS} ${GST_APP_INCLUDE_DIRS} ${GOBJ2_INCLUDE_DIRS})
 
 target_link_libraries(${gstexample} pthread gstreamer-1.0 gstapp-1.0 gobject-2.0 glib-2.0)
+target_link_libraries(${videotestsrc_example} pthread gstreamer-1.0 gstapp-1.0 gobject-2.0 glib-2.0)
