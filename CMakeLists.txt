@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.6.3)
 
 set(gstexample "gstexample")
 set(videotestsrc_example "videotestsrc_example")
+set(scan_image "scan_image")
 
 find_package(PkgConfig REQUIRED)
 
@@ -34,9 +35,14 @@ endif()
 
 add_executable(${gstexample} gstexample.c)
 add_executable(${videotestsrc_example} videotestsrc_example.c)
+add_executable(${scan_image} scan_image.c)
+
+target_include_directories(${scan_image} PRIVATE incl)
 
 target_include_directories(${gstexample} PRIVATE ${GLIB2_INCLUDE_DIRS} ${GST_INCLUDE_DIRS} ${GST_APP_INCLUDE_DIRS} ${GOBJ2_INCLUDE_DIRS})
 target_include_directories(${videotestsrc_example} PRIVATE ${GLIB2_INCLUDE_DIRS} ${GST_INCLUDE_DIRS} ${GST_APP_INCLUDE_DIRS} ${GOBJ2_INCLUDE_DIRS})
 
 target_link_libraries(${gstexample} pthread gstreamer-1.0 gstapp-1.0 gobject-2.0 glib-2.0)
 target_link_libraries(${videotestsrc_example} pthread gstreamer-1.0 gstapp-1.0 gobject-2.0 glib-2.0)
+
+target_link_libraries(${scan_image} pthread png png16 ${CMAKE_CURRENT_SOURCE_DIR}/libzbar.so)
