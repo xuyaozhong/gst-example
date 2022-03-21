@@ -5,11 +5,6 @@
 
 zbar_image_scanner_t *scanner = NULL;
 
-static unsigned char debug_buf[0x18];
-static unsigned char *dsprintbuf(void *ean)
-{
-	return debug_buf;
-}
 
 /* to complete a runnable example, this abbreviated implementation of
  * get_data() will use libpng to read an image file. refer to libpng
